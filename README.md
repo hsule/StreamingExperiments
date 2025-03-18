@@ -4,7 +4,7 @@
 ### On Client
 Follow the setup instructions from:
 - [NVIDIA DeepStream SDK Installation Guide](https://docs.nvidia.com/metropolis/deepstream/dev-guide/text/DS_Installation.html#dgpu-setup-for-ubuntu)
-- [zncat (Zenoh-based streaming client)](https://github.com/NEWSLabNTU/zncat)
+- [zncat - Command Line Replay for Zenoh](https://github.com/NEWSLabNTU/zncat?tab=readme-ov-file#installation)
 - [Zenoh installation](https://github.com/eclipse-zenoh/zenoh?tab=readme-ov-file#how-to-install-it)
 
 ### On Zenoh Router
