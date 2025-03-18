@@ -30,12 +30,15 @@ else
 fi
 
 
-# GST_TRACERS="latency(flags=element)" GST_DEBUG=GST_TRACER:7 \
+GST_DEBUG=tslatencystamper:4 \
 gst-launch-1.0 videotestsrc is-live=1 ! \
-    video/x-raw,format=NV12,width=1280,height=720 ! \
+    video/x-raw,format=NV12,width=1920,height=1080 ! \
     $PRIORITYOVERLAY \
     $EXPRESSOVERLAY \
-    timeoverlay valignment=4 halignment=1 ! tee name=t \
+    tslatencystamper ! \
+    tee name=t \
     t. ! queue ! xvimagesink sync=0 \
-    t. ! queue ! nvvideoconvert !  nvv4l2h265enc idrinterval=15 ! filesink location=/dev/stdout | \
-    RUST_LOG=info zncat -m client -e tcp/140.112.31.242:7447 --pub stream/$PRIORITY/$EXPRESS $ZN_PRIORITY $ZN_EXPRESS
+    t. ! queue ! nvvideoconvert !  nvv4l2h265enc idrinterval=15 ! h265parse ! filesink location=/dev/stdout | \
+    RUST_LOG=info zncat -m client -e tcp/140.112.31.242:7447 --pub stream $ZN_PRIORITY $ZN_EXPRESS
+
+    # timeoverlay valignment=4 halignment=1 ! 
