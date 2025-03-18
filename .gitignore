@@ -1,0 +1,4 @@
+gstshark_*/
+.vscode
+*.out
+*.log
